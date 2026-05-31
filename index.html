@@ -112,36 +112,10 @@
       <button class="hud-btn" id="btn-som">🔊</button>
       <button class="hud-btn" id="btn-guarda-roupa">👗</button>
     </div>
-    <div class="mapa-wrapper">
-      <svg id="mapa-svg" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="gradMar" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#1565C0"/>
-            <stop offset="55%" style="stop-color:#0D47A1"/>
-            <stop offset="100%" style="stop-color:#0A2E6E"/>
-          </linearGradient>
-          <filter id="sombra-terra">
-            <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="rgba(0,0,0,0.4)"/>
-          </filter>
-          <radialGradient id="vignetteGrad" cx="50%" cy="50%" r="70%">
-            <stop offset="60%" stop-color="transparent"/>
-            <stop offset="100%" stop-color="rgba(0,0,0,0.45)"/>
-          </radialGradient>
-        </defs>
-
-        <!-- Mapa real -->
-        <image href="imagens/mapa%20do%20mundo.avif"
-               x="0" y="0" width="800" height="450"
-               preserveAspectRatio="xMidYMid slice"/>
-        <!-- Vinheta subtil nas bordas para profundidade -->
-        <rect width="800" height="450"
-              fill="url(#vignetteGrad)" pointer-events="none"/>
-
-
-
-                <!-- Pinos dos mundos (renderizados por JS) -->
-        <g id="pinos-mundos"></g>
-      </svg>
+    <div class="mapa-container">
+      <img src="imagens/mapa do mundo.avif" class="mapa-img" alt="Mapa Mundo">
+      <div class="mapa-vinheta"></div>
+      <div id="pinos-container"></div>
     </div>
     <div class="mapa-titulo">
       <h2>🌍 Planeta</h2>
