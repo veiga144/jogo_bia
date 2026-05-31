@@ -23,12 +23,14 @@ function mostrarEcra(id) {
   const ecra = document.getElementById(id);
   if (ecra) ecra.classList.add('ativo');
 
-  // mostrar/esconder pinos e mapa consoante o ecrã
   const noMapa = (id === 'ecra-mapa');
-  const pinosEl = document.getElementById('pinos-container');
-  const mapaEl  = document.querySelector('.mapa-container');
-  if (pinosEl) pinosEl.style.display = noMapa ? 'block' : 'none';
-  if (mapaEl)  mapaEl.style.display  = noMapa ? 'block' : 'none';
+  const mapaEl = document.querySelector('.mapa-container');
+  if (mapaEl) mapaEl.style.display = noMapa ? 'block' : 'none';
+
+  // se saímos do mapa, remover pinos do body
+  if (!noMapa) {
+    document.querySelectorAll('.pino-mapa').forEach(el => el.remove());
+  }
 }
 
 // =====================================================================
@@ -147,8 +149,9 @@ document.getElementById('btn-novo-perfil').addEventListener('click', async () =>
 // =====================================================================
 async function irParaMapa() {
   atualizarHUD();
-  renderizarPinos();
   mostrarEcra('ecra-mapa');
+  // aguardar um frame para garantir que o ecrã está visível
+  requestAnimationFrame(() => renderizarPinos());
 }
 
 function atualizarHUD() {
@@ -166,48 +169,100 @@ function atualizarHUD() {
 }
 
 function renderizarPinos() {
-  const container = document.getElementById('pinos-container');
-  if (!container) return;
-  container.innerHTML = '';
+  // Remover pinos anteriores do body
+  document.querySelectorAll('.pino-mapa').forEach(el => el.remove());
+
+  if (!G.mundos || G.mundos.length === 0) return;
 
   G.mundos.forEach(m => {
     const completo = G.perfil && G.perfil.mundosCompletos.includes(m.id);
     const bloqueado = !m.desbloqueado;
 
-    const pino = document.createElement('div');
-    pino.className = 'pino' + (bloqueado ? ' pino-bloqueado' : '') + (completo ? ' pino-completo' : '');
-    pino.style.left = m.pin_x + '%';
-    pino.style.top  = m.pin_y + '%';
+    // Posição: left = % da largura do viewport
+    // top = HUD (64px) + % da área do mapa abaixo do HUD
+    const leftPct  = m.pin_x + '%';
+    const topCalc  = `calc(64px + ${m.pin_y / 100} * (100vh - 64px))`;
 
+    const pino = document.createElement('div');
+    pino.className = 'pino-mapa';
+    // Tudo em inline style para não depender de CSS externo
+    pino.style.cssText = `
+      position: fixed !important;
+      left: ${leftPct};
+      top: ${topCalc};
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: ${bloqueado ? 'not-allowed' : 'pointer'};
+      transition: transform .18s;
+      pointer-events: all;
+    `;
+
+    // Anel de pulsar
     if (!bloqueado && !completo) {
       const pulso = document.createElement('div');
-      pulso.className = 'pino-pulso';
+      pulso.style.cssText = `
+        position: absolute;
+        width: 58px; height: 58px;
+        border-radius: 50%;
+        border: 3px solid rgba(255,255,255,0.85);
+        animation: pulsar-pino 2s ease-out infinite;
+        pointer-events: none;
+      `;
       pino.appendChild(pulso);
     }
 
+    // Círculo colorido
     const circulo = document.createElement('div');
-    circulo.className = 'pino-circulo';
-    circulo.style.background = m.cor;
-    circulo.style.borderColor = m.cor2 || 'white';
+    circulo.style.cssText = `
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: ${m.cor};
+      border: 3px solid white;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.8), 0 0 0 4px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px;
+      position: relative;
+    `;
     circulo.textContent = bloqueado ? '🔒' : m.emoji;
     pino.appendChild(circulo);
 
+    // Medalha
     if (completo) {
-      const medalha = document.createElement('div');
-      medalha.className = 'pino-medalha';
-      medalha.textContent = '🏅';
-      pino.appendChild(medalha);
+      const med = document.createElement('div');
+      med.style.cssText = 'position:absolute;top:-18px;font-size:20px;';
+      med.textContent = '🏅';
+      circulo.appendChild(med);
     }
 
+    // Etiqueta com o nome
     const nome = document.createElement('div');
-    nome.className = 'pino-nome';
+    nome.style.cssText = `
+      margin-top: 6px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font: 700 12px/1 'Segoe UI', sans-serif;
+      padding: 4px 12px;
+      border-radius: 12px;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    `;
     nome.textContent = m.nome;
     pino.appendChild(nome);
 
     if (!bloqueado) {
       pino.addEventListener('click', () => iniciarMundo(m.id));
+      pino.addEventListener('mouseenter', () => {
+        pino.style.transform = 'translate(-50%, -50%) scale(1.2)';
+      });
+      pino.addEventListener('mouseleave', () => {
+        pino.style.transform = 'translate(-50%, -50%)';
+      });
     }
-    container.appendChild(pino);
+
+    document.body.appendChild(pino); // directamente no body
   });
 }
 
