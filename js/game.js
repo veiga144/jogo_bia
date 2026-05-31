@@ -415,12 +415,12 @@ function renderizarLojaAcessorios() {
 async function init() {
   carregarEstado();
 
-  // Carregar dados em paralelo
-  const [mundosResp] = await Promise.all([
-    fetch('dados/mundos.json'),
-    carregarAnimais(),
-  ]);
+  // 1.º await: o browser carrega avatar.js, quiz.js, minigames.js enquanto espera
+  const mundosResp = await fetch('dados/mundos.json');
   G.mundos = await mundosResp.json();
+
+  // Agora avatar.js já está carregado → carregarAnimais está definida
+  await carregarAnimais();
 
   renderizarPerfis();
 
