@@ -158,26 +158,89 @@ function atualizarHUD() {
   }
 }
 
+function criarElemSVG(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+  return el;
+}
+
 function renderizarPinos() {
   const g = document.getElementById('pinos-mundos');
-  g.innerHTML = '';
+  if (!g) return;
+  // limpar pinos anteriores
+  while (g.firstChild) g.removeChild(g.firstChild);
+
   G.mundos.forEach(m => {
-    const cx = (m.pin_x / 100) * 800;
-    const cy = (m.pin_y / 100) * 450;
+    const cx = Math.round((m.pin_x / 100) * 800);
+    const cy = Math.round((m.pin_y / 100) * 450);
     const completo = G.perfil && G.perfil.mundosCompletos.includes(m.id);
     const bloqueado = !m.desbloqueado;
 
-    const grupo = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    grupo.setAttribute('class', `pino-mundo${bloqueado ? ' bloqueado' : ''}${completo ? ' completo' : ''}`);
-    grupo.setAttribute('transform', `translate(${cx},${cy})`);
+    const grupo = criarElemSVG('g', {
+      'class': 'pino-mundo' + (bloqueado ? ' bloqueado' : '') + (completo ? ' completo' : ''),
+      'transform': `translate(${cx},${cy})`,
+      'cursor': bloqueado ? 'not-allowed' : 'pointer',
+    });
 
-    grupo.innerHTML = `
-      <circle r="24" fill="${m.cor}" opacity="0.92" stroke="white" stroke-width="2.5"/>
-      <circle r="24" fill="none" stroke="${m.cor2}" stroke-width="${completo ? 4 : 0}" opacity="0.9"/>
-      <text y="9" text-anchor="middle" font-size="22" style="font-family:sans-serif">${m.emoji}</text>
-      ${completo ? '<text y="-16" text-anchor="middle" font-size="14">🏅</text>' : ''}
-      ${bloqueado ? '<text y="9" text-anchor="middle" font-size="18">🔒</text>' : ''}
-    `;
+    // Sombra exterior
+    const sombra = criarElemSVG('circle', {
+      r: '30', fill: 'rgba(0,0,0,0.35)', cy: '4',
+    });
+    grupo.appendChild(sombra);
+
+    // Anel de pulsar (apenas mundos desbloqueados)
+    if (!bloqueado && !completo) {
+      const pulso = criarElemSVG('circle', {
+        r: '30', fill: 'none', stroke: 'white',
+        'stroke-width': '2', opacity: '0.5',
+        class: 'pino-pulso',
+      });
+      grupo.appendChild(pulso);
+    }
+
+    // Círculo de fundo (borda escura para contraste no mapa)
+    const bordaEscura = criarElemSVG('circle', {
+      r: '26', fill: 'rgba(0,0,0,0.5)',
+    });
+    grupo.appendChild(bordaEscura);
+
+    // Círculo colorido principal
+    const circulo = criarElemSVG('circle', {
+      r: '24', fill: m.cor, stroke: 'white', 'stroke-width': '2.5',
+    });
+    grupo.appendChild(circulo);
+
+    // Emoji do mundo
+    const emoji = criarElemSVG('text', {
+      y: '9', 'text-anchor': 'middle',
+      'font-size': '22', 'font-family': 'sans-serif',
+    });
+    emoji.textContent = bloqueado ? '🔒' : m.emoji;
+    grupo.appendChild(emoji);
+
+    // Medalha se completo
+    if (completo) {
+      const medalha = criarElemSVG('text', {
+        y: '-18', 'text-anchor': 'middle', 'font-size': '14', 'font-family': 'sans-serif',
+      });
+      medalha.textContent = '🏅';
+      grupo.appendChild(medalha);
+    }
+
+    // Nome por baixo do pino
+    const nomeBg = criarElemSVG('rect', {
+      x: '-28', y: '30', width: '56', height: '14',
+      rx: '7', fill: 'rgba(0,0,0,0.65)',
+    });
+    grupo.appendChild(nomeBg);
+
+    const nomeTexto = criarElemSVG('text', {
+      y: '41', 'text-anchor': 'middle',
+      'font-size': '9', 'font-family': 'sans-serif',
+      fill: 'white', 'font-weight': 'bold',
+    });
+    nomeTexto.textContent = m.nome;
+    grupo.appendChild(nomeTexto);
 
     if (!bloqueado) {
       grupo.addEventListener('click', () => iniciarMundo(m.id));

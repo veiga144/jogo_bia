@@ -6,8 +6,8 @@
     "descricao": "Descobre os segredos da bota da Europa!",
     "cor": "#009246",
     "cor2": "#CE2B37",
-    "pin_x": 53.5,
-    "pin_y": 26.8,
+    "pin_x": 52.5,
+    "pin_y": 29.5,
     "minijogo": "pizza",
     "desbloqueado": true
   },
@@ -16,10 +16,10 @@
     "nome": "Oceanos",
     "emoji": "🌊",
     "descricao": "Mergulha nos mistérios do mar!",
-    "cor": "#0077B6",
+    "cor": "#0096C7",
     "cor2": "#48CAE4",
-    "pin_x": 35,
-    "pin_y": 43,
+    "pin_x": 29.0,
+    "pin_y": 47.0,
     "minijogo": "lixo",
     "desbloqueado": true
   },
@@ -30,8 +30,8 @@
     "descricao": "Explora os segredos dos faraós!",
     "cor": "#E9C46A",
     "cor2": "#E76F51",
-    "pin_x": 58.7,
-    "pin_y": 33.4,
+    "pin_x": 57.5,
+    "pin_y": 37.5,
     "minijogo": "piramide",
     "desbloqueado": true
   }

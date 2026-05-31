@@ -367,9 +367,17 @@ html, body {
   transition: transform 0.2s;
   transform-origin: center;
 }
-.pino-mundo:hover { transform: scale(1.15); }
-.pino-mundo.bloqueado { filter: grayscale(1) opacity(0.5); cursor: not-allowed; }
-.pino-mundo.completo .pino-anel { stroke-dasharray: 0; }
+.pino-mundo:hover { transform: scale(1.18); }
+.pino-mundo.bloqueado { filter: grayscale(1) opacity(0.45); cursor: not-allowed; }
+
+@keyframes pulsar-pino {
+  0%   { r: 28; opacity: 0.7; }
+  70%  { r: 38; opacity: 0; }
+  100% { r: 38; opacity: 0; }
+}
+.pino-pulso {
+  animation: pulsar-pino 2s ease-out infinite;
+}
 
 /* ---- ECRÃ: QUIZ ---- */
 #ecra-quiz {
