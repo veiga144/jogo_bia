@@ -1,0 +1,38 @@
+[
+  {
+    "id": "italia",
+    "nome": "Itália",
+    "emoji": "🍕",
+    "descricao": "Descobre os segredos da bota da Europa!",
+    "cor": "#009246",
+    "cor2": "#CE2B37",
+    "pin_x": 53.5,
+    "pin_y": 26.8,
+    "minijogo": "pizza",
+    "desbloqueado": true
+  },
+  {
+    "id": "oceanos",
+    "nome": "Oceanos",
+    "emoji": "🌊",
+    "descricao": "Mergulha nos mistérios do mar!",
+    "cor": "#0077B6",
+    "cor2": "#48CAE4",
+    "pin_x": 35,
+    "pin_y": 43,
+    "minijogo": "lixo",
+    "desbloqueado": true
+  },
+  {
+    "id": "egito",
+    "nome": "Egito",
+    "emoji": "🏺",
+    "descricao": "Explora os segredos dos faraós!",
+    "cor": "#E9C46A",
+    "cor2": "#E76F51",
+    "pin_x": 58.7,
+    "pin_y": 33.4,
+    "minijogo": "piramide",
+    "desbloqueado": true
+  }
+]

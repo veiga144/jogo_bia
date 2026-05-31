@@ -1,0 +1,22 @@
+[
+  {"id":"leao",      "nome":"Leão",       "onde":"África",       "emoji":"🦁", "regiao":"africa"},
+  {"id":"elefante",  "nome":"Elefante",   "onde":"África",       "emoji":"🐘", "regiao":"africa"},
+  {"id":"girafa",    "nome":"Girafa",     "onde":"África",       "emoji":"🦒", "regiao":"africa"},
+  {"id":"zebra",     "nome":"Zebra",      "onde":"África",       "emoji":"🦓", "regiao":"africa"},
+  {"id":"crocodilo", "nome":"Crocodilo",  "onde":"África",       "emoji":"🐊", "regiao":"africa"},
+  {"id":"flamingo",  "nome":"Flamingo",   "onde":"África",       "emoji":"🦩", "regiao":"africa"},
+  {"id":"tigre",     "nome":"Tigre",      "onde":"Ásia",         "emoji":"🐯", "regiao":"asia"},
+  {"id":"panda",     "nome":"Panda",      "onde":"China",        "emoji":"🐼", "regiao":"asia"},
+  {"id":"cobra",     "nome":"Cobra",      "onde":"Ásia",         "emoji":"🐍", "regiao":"asia"},
+  {"id":"macaco",    "nome":"Macaco",     "onde":"América do Sul","emoji":"🐒","regiao":"america"},
+  {"id":"papagaio",  "nome":"Papagaio",   "onde":"Brasil",       "emoji":"🦜", "regiao":"america"},
+  {"id":"urso",      "nome":"Urso",       "onde":"América do Norte","emoji":"🐻","regiao":"america"},
+  {"id":"aguia",     "nome":"Águia",      "onde":"América do Norte","emoji":"🦅","regiao":"america"},
+  {"id":"lobo",      "nome":"Lobo",       "onde":"Europa",       "emoji":"🐺", "regiao":"europa"},
+  {"id":"raposa",    "nome":"Raposa",     "onde":"Europa",       "emoji":"🦊", "regiao":"europa"},
+  {"id":"coelho",    "nome":"Coelho",     "onde":"Europa",       "emoji":"🐇", "regiao":"europa"},
+  {"id":"golfinho",  "nome":"Golfinho",   "onde":"Oceanos",      "emoji":"🐬", "regiao":"oceano"},
+  {"id":"tubarao",   "nome":"Tubarão",    "onde":"Oceanos",      "emoji":"🦈", "regiao":"oceano"},
+  {"id":"tartaruga", "nome":"Tartaruga",  "onde":"Oceanos",      "emoji":"🐢", "regiao":"oceano"},
+  {"id":"pinguim",   "nome":"Pinguim",    "onde":"Antárctida",   "emoji":"🐧", "regiao":"antartico"}
+]

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Planeta</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ========== ECRÃ: PERFIS ========== -->
+  <div id="ecra-perfis" class="ecra ativo">
+    <div class="logo-titulo">
+      <div class="planeta-logo">🌍</div>
+      <h1>Planeta</h1>
+      <p class="subtitulo">Aprende o mundo a brincar!</p>
+    </div>
+    <div id="lista-perfis" class="lista-perfis"></div>
+    <button class="btn btn-principal" id="btn-novo-perfil">+ Criar novo jogador</button>
+  </div>
+
+  <!-- ========== ECRÃ: CRIADOR DE PERSONAGEM ========== -->
+  <div id="ecra-criador" class="ecra">
+    <div class="cabecalho-ecra">
+      <h2>Escolhe o teu animal!</h2>
+    </div>
+    <div class="criador-layout">
+      <div class="criador-preview-animal">
+        <div class="criador-preview-img-wrap">
+          <img id="criador-preview-img" src="" alt="" style="display:none">
+          <div id="criador-preview-emoji" class="criador-preview-emoji">🐾</div>
+        </div>
+        <div class="criador-preview-info">
+          <span id="criador-preview-nome" class="criador-nome-animal">Escolhe um animal!</span>
+          <span id="criador-preview-onde" class="criador-onde-animal"></span>
+        </div>
+      </div>
+      <div class="animais-grid" id="animais-grid"></div>
+      <div class="criador-dados">
+        <div class="dummy-svg-placeholder" style="display:none">
+        <svg id="avatar-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Corpo -->
+          <rect id="av-corpo" x="60" y="160" width="80" height="100" rx="15" fill="#4A90D9"/>
+          <!-- Pescoço -->
+          <rect id="av-pescoco" x="88" y="148" width="24" height="20" fill="#FDBCB4"/>
+          <!-- Cabeça -->
+          <circle id="av-cabeca" cx="100" cy="120" r="50" fill="#FDBCB4"/>
+          <!-- Olhos -->
+          <circle id="av-olho-esq" cx="82" cy="115" r="8" fill="white"/>
+          <circle id="av-olho-dir" cx="118" cy="115" r="8" fill="white"/>
+          <circle id="av-iris-esq" cx="84" cy="116" r="5" fill="#5C4033"/>
+          <circle id="av-iris-dir" cx="120" cy="116" r="5" fill="#5C4033"/>
+          <circle cx="85" cy="115" r="2" fill="black"/>
+          <circle cx="121" cy="115" r="2" fill="black"/>
+          <circle cx="87" cy="113" r="1.5" fill="white"/>
+          <circle cx="123" cy="113" r="1.5" fill="white"/>
+          <!-- Nariz -->
+          <ellipse id="av-nariz" cx="100" cy="128" rx="4" ry="3" fill="rgba(0,0,0,0.1)"/>
+          <!-- Boca -->
+          <path id="av-boca" d="M 88 138 Q 100 148 112 138" stroke="#c0706a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Cabelo (sobrepõe a cabeça) -->
+          <g id="av-cabelo">
+            <path d="M 52 110 Q 50 70 100 62 Q 150 70 148 110 Q 140 80 100 75 Q 60 80 52 110 Z" fill="#5C3317"/>
+            <path d="M 52 110 Q 48 120 50 130 Q 55 100 60 110 Z" fill="#5C3317"/>
+            <path d="M 148 110 Q 152 120 150 130 Q 145 100 140 110 Z" fill="#5C3317"/>
+          </g>
+          <!-- Braços -->
+          <rect id="av-braco-esq" x="30" y="165" width="32" height="18" rx="9" fill="#4A90D9"/>
+          <rect id="av-braco-dir" x="138" y="165" width="32" height="18" rx="9" fill="#4A90D9"/>
+          <!-- Mãos -->
+          <circle cx="30" cy="174" r="11" fill="#FDBCB4"/>
+          <circle cx="170" cy="174" r="11" fill="#FDBCB4"/>
+        </svg>
+        </div><!-- fim dummy-svg-placeholder -->
+        <div class="campo-grupo">
+          <label>O teu nome</label>
+          <input type="text" id="input-nickname" placeholder="Como te chamas?" maxlength="16">
+        </div>
+        <div class="campo-grupo">
+          <label>Idade</label>
+          <input type="number" id="input-idade" min="5" max="15" value="8">
+        </div>
+      </div><!-- fim criador-dados -->
+      <button class="btn btn-principal" id="btn-confirmar-criador">Pronto! Vamos explorar! 🚀</button>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: BOAS-VINDAS ========== -->
+  <div id="ecra-boas-vindas" class="ecra">
+    <div class="boas-vindas-conteudo">
+      <div class="mascote-grande">
+        <img src="imagens/BIA_sem_fundo.png" alt="Beatriz"
+             style="width:180px;object-fit:contain;object-position:top;
+                    filter:drop-shadow(0 6px 18px rgba(0,0,0,0.4));
+                    animation:bounce-in 0.6s ease-out">
+      </div>
+      <div class="balao-fala">
+        <p id="texto-boas-vindas"></p>
+      </div>
+      <button class="btn btn-principal" id="btn-comecar">Vamos explorar! 🌍</button>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: MAPA ========== -->
+  <div id="ecra-mapa" class="ecra">
+    <div class="hud">
+      <div class="hud-avatar" id="hud-avatar-btn">
+        <div id="hud-avatar-wrap" style="width:44px;height:44px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px">🐾</div>
+      </div>
+      <div class="hud-moedas">🪙 <span id="hud-moedas">0</span></div>
+      <button class="hud-btn" id="btn-som">🔊</button>
+      <button class="hud-btn" id="btn-guarda-roupa">👗</button>
+    </div>
+    <div class="mapa-wrapper">
+      <svg id="mapa-svg" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="gradMar" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#1565C0"/>
+            <stop offset="55%" style="stop-color:#0D47A1"/>
+            <stop offset="100%" style="stop-color:#0A2E6E"/>
+          </linearGradient>
+          <filter id="sombra-terra">
+            <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="rgba(0,0,0,0.4)"/>
+          </filter>
+        </defs>
+
+        <!-- Oceano -->
+        <rect width="800" height="450" fill="url(#gradMar)"/>
+
+        <!-- Grelha lat/lon -->
+        <g stroke="rgba(255,255,255,0.07)" stroke-width="0.6" fill="none">
+          <line x1="0" y1="75" x2="800" y2="75"/>
+          <line x1="0" y1="150" x2="800" y2="150"/>
+          <line x1="0" y1="225" x2="800" y2="225" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+          <line x1="0" y1="300" x2="800" y2="300"/>
+          <line x1="0" y1="375" x2="800" y2="375"/>
+          <line x1="133" y1="0" x2="133" y2="450"/>
+          <line x1="267" y1="0" x2="267" y2="450"/>
+          <line x1="400" y1="0" x2="400" y2="450" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+          <line x1="533" y1="0" x2="533" y2="450"/>
+          <line x1="667" y1="0" x2="667" y2="450"/>
+        </g>
+        <!-- Rótulos da grelha -->
+        <g fill="rgba(255,255,255,0.25)" font-size="7" font-family="sans-serif" text-anchor="middle">
+          <text x="400" y="73">60°N</text><text x="400" y="148">30°N</text>
+          <text x="400" y="223">EQ</text><text x="400" y="298">30°S</text>
+          <text x="8" y="440">180°</text><text x="133" y="440">120°O</text>
+          <text x="267" y="440">60°O</text><text x="400" y="440">0°</text>
+          <text x="533" y="440">60°L</text><text x="667" y="440">120°L</text>
+        </g>
+
+        <!-- ── ANTÁRCTIDA ── -->
+        <path d="M 0,418 Q 200,408 400,412 Q 600,416 800,405 L 800,450 L 0,450 Z" fill="#D0D8E8" opacity="0.85"/>
+
+        <!-- ── GRONELÂNDIA ── -->
+        <path d="M 287,42 L 300,30 L 315,22 L 330,18 L 345,22 L 355,32 L 352,45 L 340,55 L 322,60 L 305,58 L 293,50 Z" fill="#4CAF50" opacity="0.8"/>
+
+        <!-- ── ISLÂNDIA ── -->
+        <path d="M 357,62 L 368,56 L 378,60 L 378,68 L 368,73 L 357,70 Z" fill="#43A047" opacity="0.9"/>
+
+        <!-- ── AMÉRICAS DO NORTE E CENTRAL ── -->
+        <path d="
+          M 48,102 L 30,92 L 20,75 L 30,60 L 50,58 L 68,50 L 90,52
+          L 120,44 L 148,48 L 178,52 L 208,50 L 235,55 L 252,65
+          L 260,78 L 272,88 L 270,105 L 255,112 L 244,122
+          L 234,138 L 222,162 L 226,178 L 218,190 L 208,188
+          L 198,178 L 180,170 L 162,165 L 148,150 L 140,142
+          L 124,132 L 122,112 L 124,100 L 100,82 L 78,80
+          L 58,85 L 48,102 Z
+        " fill="#2E7D32" opacity="0.92" filter="url(#sombra-terra)"/>
+        <!-- Baía de Hudson (água interior) -->
+        <path d="M 205,82 L 222,70 L 242,78 L 248,95 L 238,112 L 218,118 L 205,110 L 198,98 Z" fill="#0D47A1" opacity="0.75"/>
+        <!-- Flórida -->
+        <path d="M 222,162 L 228,170 L 224,182 L 218,178 L 218,165 Z" fill="#2E7D32" opacity="0.92"/>
+        <!-- América Central -->
+        <path d="M 208,188 L 220,200 L 228,205 L 228,198 L 218,190 Z" fill="#2E7D32" opacity="0.92"/>
+        <!-- Baja California -->
+        <path d="M 133,142 L 128,155 L 125,172 L 130,178 L 136,168 L 138,150 Z" fill="#2E7D32" opacity="0.92"/>
+        <!-- Cuba -->
+        <path d="M 218,172 L 236,168 L 248,173 L 240,180 L 222,180 Z" fill="#43A047" opacity="0.9"/>
+        <!-- Ilha de Newfoundland -->
+        <path d="M 274,98 L 282,95 L 285,102 L 280,108 L 273,106 Z" fill="#43A047" opacity="0.9"/>
+
+        <!-- ── AMÉRICA DO SUL ── -->
+        <path d="
+          M 228,205 L 242,200 L 262,200 L 280,196 L 292,205
+          L 292,220 L 280,232 L 272,258 L 265,290 L 260,320
+          L 260,348 L 264,368 L 260,388 L 250,405 L 242,418
+          L 232,428 L 222,418 L 213,405 L 212,382 L 210,355
+          L 210,322 L 206,292 L 205,262 L 210,235 L 215,215
+          L 222,207 Z
+        " fill="#2E7D32" opacity="0.92" filter="url(#sombra-terra)"/>
+
+        <!-- ── EUROPA ── -->
+        <!-- Corpo principal -->
+        <path d="
+          M 395,92 L 407,87 L 420,88 L 432,82 L 442,75
+          L 454,68 L 464,65 L 474,68 L 482,72 L 487,82
+          L 480,90 L 472,96 L 465,102 L 472,110 L 474,120
+          L 468,126 L 458,132 L 448,136 L 440,140 L 434,130
+          L 428,124 L 424,130 L 418,132 L 408,122 L 400,126
+          L 393,118 L 384,112 L 382,100 L 388,94 Z
+        " fill="#388E3C" opacity="0.93" filter="url(#sombra-terra)"/>
+        <!-- Escandinávia -->
+        <path d="
+          M 420,88 L 418,74 L 414,58 L 416,44 L 420,34
+          L 428,28 L 436,30 L 440,40 L 442,52 L 444,65
+          L 432,72 Z
+        " fill="#388E3C" opacity="0.93"/>
+        <!-- Finlândia + Países Bálticos -->
+        <path d="M 444,65 L 456,62 L 462,55 L 463,46 L 456,40 L 447,42 L 442,52 Z" fill="#388E3C" opacity="0.93"/>
+        <!-- Península Ibérica -->
+        <path d="
+          M 395,92 L 408,87 L 420,90 L 420,100 L 416,112
+          L 408,122 L 400,126 L 393,118 L 384,112 L 382,100 L 388,94 Z
+        " fill="#388E3C" opacity="0.93"/>
+        <!-- ITÁLIA (bota reconhecível) -->
+        <path d="
+          M 424,108 L 432,106 L 440,110 L 444,118 L 446,128
+          L 448,136 L 446,142 L 442,140
+          L 440,132 L 438,122 L 434,114 L 426,110 Z
+        " fill="#43A047" opacity="0.95"/>
+        <!-- Sicília -->
+        <path d="M 432,142 L 442,140 L 446,145 L 441,148 L 433,146 Z" fill="#43A047" opacity="0.95"/>
+        <!-- Córsega + Sardenha -->
+        <path d="M 418,115 L 421,112 L 422,118 L 419,121 Z" fill="#43A047" opacity="0.9"/>
+        <path d="M 418,122 L 421,119 L 422,126 L 419,128 Z" fill="#43A047" opacity="0.9"/>
+        <!-- Grécia + Balcãs -->
+        <path d="M 452,108 L 462,108 L 468,118 L 462,128 L 456,132 L 452,122 Z" fill="#388E3C" opacity="0.93"/>
+        <!-- Ilhas Britânicas -->
+        <path d="M 386,78 L 392,72 L 399,74 L 400,82 L 396,88 L 387,87 Z" fill="#43A047" opacity="0.9"/>
+        <path d="M 380,76 L 385,70 L 384,80 L 380,80 Z" fill="#43A047" opacity="0.9"/>
+
+        <!-- ── ÁFRICA ── -->
+        <!-- Corpo principal + EGITO destacado -->
+        <path d="
+          M 393,132 L 415,125 L 442,124 L 462,120 L 474,125
+          L 483,135 L 492,148 L 500,162 L 507,182 L 510,210
+          L 508,240 L 502,268 L 492,298 L 480,325 L 467,348
+          L 455,360 L 445,355 L 437,342 L 428,325 L 420,308
+          L 415,285 L 411,260 L 408,235 L 406,208 L 405,182
+          L 404,162 L 398,148 L 393,138 Z
+        " fill="#5D8A3C" opacity="0.93" filter="url(#sombra-terra)"/>
+        <!-- EGITO (destacado a cor ligeiramente diferente) -->
+        <path d="
+          M 462,120 L 484,118 L 492,128 L 492,148
+          L 483,135 L 474,125 L 462,120 Z
+        " fill="#F4A261" opacity="0.7"/>
+        <!-- Corno de África -->
+        <path d="M 507,215 L 522,215 L 530,225 L 520,238 L 509,242 Z" fill="#5D8A3C" opacity="0.93"/>
+        <!-- Madagáscar -->
+        <path d="M 512,282 L 516,272 L 519,285 L 516,300 L 510,297 Z" fill="#4CAF50" opacity="0.9"/>
+
+        <!-- ── MÉDIO ORIENTE ── -->
+        <path d="
+          M 483,132 L 496,126 L 510,128 L 520,138 L 522,155
+          L 518,172 L 510,185 L 500,195 L 493,190 L 488,178
+          L 484,162 L 483,148 Z
+        " fill="#8BC34A" opacity="0.92"/>
+        <!-- Turquia -->
+        <path d="M 468,104 L 482,100 L 498,103 L 508,110 L 508,120 L 498,124 L 484,122 L 470,118 Z" fill="#7CB342" opacity="0.92"/>
+        <!-- Chipre -->
+        <path d="M 476,122 L 482,120 L 484,124 L 479,126 Z" fill="#7CB342" opacity="0.9"/>
+
+        <!-- ── ÁSIA ── -->
+        <path d="
+          M 487,82 L 510,76 L 538,70 L 568,65 L 600,60
+          L 635,57 L 665,54 L 698,52 L 728,54 L 754,60
+          L 775,70 L 790,85 L 788,100 L 778,112 L 764,120
+          L 748,128 L 730,134 L 714,140 L 698,146 L 680,150
+          L 664,153 L 646,155 L 628,158 L 615,164 L 602,170
+          L 590,178 L 580,188 L 572,198 L 560,202 L 547,205
+          L 534,208 L 522,215 L 510,210 L 500,195 L 510,185
+          L 518,172 L 522,155 L 520,138 L 510,128 L 508,120
+          L 508,110 L 498,103 L 482,100 L 468,100 L 472,92
+          L 480,87 Z
+        " fill="#558B2F" opacity="0.92" filter="url(#sombra-terra)"/>
+        <!-- Índia -->
+        <path d="
+          M 578,165 L 602,162 L 618,168 L 628,180 L 628,200
+          L 620,218 L 608,232 L 596,238 L 586,228 L 580,212
+          L 577,198 L 576,182 Z
+        " fill="#558B2F" opacity="0.92"/>
+        <!-- Sri Lanka -->
+        <path d="M 608,240 L 612,236 L 616,242 L 612,247 L 608,244 Z" fill="#66BB6A" opacity="0.9"/>
+        <!-- Península de Indochina -->
+        <path d="M 660,156 L 680,152 L 695,160 L 696,176 L 688,192 L 676,202 L 664,212 L 657,202 L 655,185 Z" fill="#558B2F" opacity="0.92"/>
+        <!-- Coreia -->
+        <path d="M 718,112 L 726,108 L 729,118 L 722,126 L 715,122 Z" fill="#66BB6A" opacity="0.9"/>
+        <!-- Japão -->
+        <path d="M 742,90 L 748,86 L 756,92 L 754,102 L 747,106 L 741,100 Z" fill="#66BB6A" opacity="0.9"/>
+        <path d="M 752,106 L 758,102 L 762,108 L 759,114 L 752,112 Z" fill="#66BB6A" opacity="0.9"/>
+        <!-- Sumatra -->
+        <path d="M 620,213 L 644,206 L 664,210 L 672,220 L 658,228 L 638,222 L 621,218 Z" fill="#558B2F" opacity="0.92"/>
+        <!-- Bornéu -->
+        <path d="M 693,185 L 714,180 L 723,192 L 720,208 L 706,214 L 694,203 Z" fill="#558B2F" opacity="0.92"/>
+        <!-- Java -->
+        <path d="M 668,226 L 692,218 L 712,222 L 714,232 L 698,236 L 673,232 Z" fill="#558B2F" opacity="0.92"/>
+        <!-- Filipinas -->
+        <path d="M 713,178 L 720,172 L 724,180 L 720,188 L 712,185 Z" fill="#66BB6A" opacity="0.9"/>
+        <!-- Taiwan -->
+        <path d="M 720,140 L 724,136 L 727,142 L 724,148 L 720,145 Z" fill="#66BB6A" opacity="0.9"/>
+
+        <!-- ── AUSTRÁLIA ── -->
+        <path d="
+          M 656,270 L 678,260 L 702,256 L 724,258 L 745,265
+          L 762,278 L 772,298 L 774,318 L 770,340 L 758,355
+          L 740,364 L 720,366 L 700,360 L 683,350 L 668,336
+          L 656,318 L 651,298 L 653,280 Z
+        " fill="#6D9B3A" opacity="0.92" filter="url(#sombra-terra)"/>
+        <!-- Golfo de Carpentária (recorte) -->
+        <path d="M 706,260 L 722,265 L 722,285 L 710,286 L 698,274 Z" fill="#0D47A1" opacity="0.65"/>
+        <!-- Tasmânia -->
+        <path d="M 718,370 L 724,366 L 728,372 L 724,378 L 718,375 Z" fill="#6D9B3A" opacity="0.9"/>
+        <!-- Nova Zelândia -->
+        <path d="M 778,338 L 783,330 L 788,340 L 784,350 L 778,347 Z" fill="#6D9B3A" opacity="0.9"/>
+        <path d="M 780,354 L 785,350 L 787,358 L 783,363 L 779,360 Z" fill="#6D9B3A" opacity="0.9"/>
+
+        <!-- Pinos dos mundos (renderizados por JS) -->
+        <g id="pinos-mundos"></g>
+      </svg>
+    </div>
+    <div class="mapa-titulo">
+      <h2>🌍 Planeta</h2>
+      <p>Escolhe um mundo para explorar!</p>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: QUIZ ========== -->
+  <div id="ecra-quiz" class="ecra">
+    <div class="quiz-topo">
+      <div class="quiz-progresso">
+        <span id="quiz-mundo-nome"></span>
+        <div class="barra-progresso"><div id="barra-fill" class="barra-fill"></div></div>
+        <span id="quiz-progresso-texto"></span>
+      </div>
+      <div class="quiz-moedas">🪙 <span id="quiz-moedas">0</span></div>
+    </div>
+
+    <div class="quiz-corpo">
+      <div class="quiz-mascote-pequena" id="quiz-beatriz"></div>
+      <p id="quiz-pergunta" class="quiz-pergunta-texto"></p>
+
+      <div id="quiz-opcoes" class="quiz-opcoes"></div>
+
+      <div id="painel-dicas" class="painel-dicas oculto">
+        <div class="balao-beatriz">
+          <p id="texto-dica"></p>
+        </div>
+        <button class="btn btn-dica" id="btn-dica">💡 Pedir ajuda à Beatriz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: RESULTADO DA RESPOSTA ========== -->
+  <div id="ecra-resultado" class="ecra">
+    <div class="resultado-conteudo">
+      <div id="resultado-icone" class="resultado-icone"></div>
+      <h2 id="resultado-titulo"></h2>
+      <p id="resultado-moedas-ganhas" class="moedas-ganhas"></p>
+      <div class="curiosidade-box">
+        <span class="curiosidade-label">💡 Sabias que…</span>
+        <p id="resultado-curiosidade"></p>
+      </div>
+      <button class="btn btn-principal" id="btn-continuar-resultado">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: MINI-JOGO ========== -->
+  <div id="ecra-minijogo" class="ecra">
+    <div class="minijogo-topo">
+      <h2 id="minijogo-titulo"></h2>
+      <p id="minijogo-instrucao"></p>
+    </div>
+    <div id="minijogo-area" class="minijogo-area"></div>
+    <div class="minijogo-rodape">
+      <div id="minijogo-estado"></div>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: CONCLUSÃO DO MUNDO ========== -->
+  <div id="ecra-conclusao" class="ecra">
+    <div class="conclusao-conteudo">
+      <div class="conclusao-medalha" id="conclusao-medalha"></div>
+      <h1 id="conclusao-titulo">Mundo Completo!</h1>
+      <p id="conclusao-subtitulo"></p>
+      <div class="conclusao-recompensas">
+        <div class="recompensa-item">🪙 <span id="conclusao-moedas"></span> moedas ganhas!</div>
+        <div class="recompensa-item" id="conclusao-medalha-texto"></div>
+      </div>
+      <button class="btn btn-principal" id="btn-voltar-mapa">Voltar ao mapa 🌍</button>
+    </div>
+  </div>
+
+  <!-- ========== ECRÃ: GUARDA-ROUPA ========== -->
+  <div id="ecra-guarda-roupa" class="ecra">
+    <div class="cabecalho-ecra">
+      <button class="btn-voltar" id="btn-fechar-guarda-roupa">← Voltar</button>
+      <h2>Guarda-roupa 👗</h2>
+    </div>
+    <div class="guarda-roupa-layout">
+      <div class="gr-avatar">
+        <div id="gr-avatar-div" class="gr-avatar-animal"></div>
+        <div class="gr-moedas">🪙 <span id="gr-moedas">0</span></div>
+      </div>
+      <div class="gr-loja" id="gr-loja"></div>
+    </div>
+  </div>
+
+</div><!-- #app -->
+
+<script src="js/game.js"></script>
+<script src="js/avatar.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/minigames.js"></script>
+</body>
+</html>

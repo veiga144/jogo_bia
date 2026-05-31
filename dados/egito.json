@@ -1,0 +1,71 @@
+{
+  "id": "egito",
+  "perguntas": [
+    {
+      "id": "eg_001",
+      "pergunta": "Em que continente fica o Egito?",
+      "opcoes": ["Ásia", "África", "Europa", "Médio Oriente"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Fica no canto nordeste desse continente.",
+        "É o continente mais quente do mundo."
+      ],
+      "curiosidade": "Sabias que o Egito está em África mas fica mesmo ao lado da Ásia? Por isso construíram o Canal do Suez para os barcos passarem entre os dois continentes sem dar a volta à África!"
+    },
+    {
+      "id": "eg_002",
+      "pergunta": "Qual é o nome do famoso rio que atravessa o Egito?",
+      "opcoes": ["Amazonas", "Nilo", "Nígero", "Tigre"],
+      "resposta_correta": 1,
+      "dicas": [
+        "É um dos rios mais compridos do mundo.",
+        "Começa pela letra N."
+      ],
+      "curiosidade": "Sabias que o Rio Nilo, com 6650 km, é um dos rios mais compridos do mundo? Os Egípcios antigos viviam todos perto do Nilo porque sem ele o Egito seria deserto!"
+    },
+    {
+      "id": "eg_003",
+      "pergunta": "Como se chamava o rei do Egito Antigo?",
+      "opcoes": ["Imperador", "Faraó", "Sultão", "Califa"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Era considerado um deus vivo na Terra.",
+        "Começa pela letra F."
+      ],
+      "curiosidade": "Sabias que o Faraó mais famoso é Tutancâmon, que morreu com apenas 19 anos? O seu túmulo foi descoberto em 1922, cheio de tesouros de ouro e objetos mágicos!"
+    },
+    {
+      "id": "eg_004",
+      "pergunta": "O que é uma múmia?",
+      "opcoes": ["Um fantasma egípcio", "Um corpo preservado após a morte", "Uma estátua de pedra", "Um tipo de pirâmide"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Os Egípcios faziam isto para preservar o corpo para a vida depois da morte.",
+        "O corpo era envolvido em ligaduras de linho."
+      ],
+      "curiosidade": "Sabias que o processo de fazer uma múmia demorava 70 dias? Os Egípcios retiravam os órgãos internos e guardavam-nos em potes especiais chamados 'vasos canópicos'!"
+    },
+    {
+      "id": "eg_005",
+      "pergunta": "Como se chama a escrita com desenhos que os Egípcios usavam?",
+      "opcoes": ["Alfabeto", "Hieróglifos", "Cuneiforme", "Rúnico"],
+      "resposta_correta": 1,
+      "dicas": [
+        "São símbolos que parecem desenhos de animais e objetos.",
+        "Começa pela letra H."
+      ],
+      "curiosidade": "Sabias que os hieróglifos foram um mistério por mais de 1000 anos? Só em 1822 é que o cientista Champollion os decifrou graças à Pedra de Roseta, uma pedra com o mesmo texto em três línguas!"
+    },
+    {
+      "id": "eg_006",
+      "pergunta": "Como se chama a estátua gigante com corpo de leão e cabeça humana, perto das pirâmides?",
+      "opcoes": ["Anúbis", "Ramsés", "Esfinge", "Cleópatra"],
+      "resposta_correta": 2,
+      "dicas": [
+        "É uma estátua esculpida diretamente na rocha, com 73 metros de comprimento.",
+        "Começa pela letra E."
+      ],
+      "curiosidade": "Sabias que a Grande Esfinge de Gizé tem 73 metros de comprimento e 20 metros de altura? É tão grande como um edifício de 6 andares! E ainda não sabemos ao certo quem mandou construí-la."
+    }
+  ]
+}

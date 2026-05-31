@@ -1,0 +1,71 @@
+{
+  "id": "italia",
+  "perguntas": [
+    {
+      "id": "it_001",
+      "pergunta": "Qual é a capital de Itália?",
+      "opcoes": ["Roma", "Milão", "Nápoles", "Florença"],
+      "resposta_correta": 0,
+      "dicas": [
+        "É uma cidade muito antiga, cheia de história e monumentos famosos.",
+        "Começa pela letra R e tem um Coliseu gigante."
+      ],
+      "curiosidade": "Sabias que Roma tem mais de 2700 anos e é uma das cidades mais antigas da Europa? Por isso chamam-lhe a 'Cidade Eterna'!"
+    },
+    {
+      "id": "it_002",
+      "pergunta": "Em que cidade italiana podes andar de gondola pelos canais?",
+      "opcoes": ["Florença", "Veneza", "Génova", "Turim"],
+      "resposta_correta": 1,
+      "dicas": [
+        "É uma cidade construída sobre a água, em cima de ilhas.",
+        "Começa pela letra V."
+      ],
+      "curiosidade": "Sabias que Veneza é construída em cima de 118 ilhas pequenas, ligadas por mais de 400 pontes? Em vez de carros, as pessoas andam de barco!"
+    },
+    {
+      "id": "it_003",
+      "pergunta": "Como se chama o vulcão famoso que destruiu a cidade de Pompeia?",
+      "opcoes": ["Etna", "Vesúvio", "Stromboli", "Vulcano"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Entrou em erupção há cerca de 2000 anos, perto de Nápoles.",
+        "Começa pela letra V."
+      ],
+      "curiosidade": "Sabias que o Vesúvio entrou em erupção no ano 79 d.C. e enterrou a cidade de Pompeia em cinzas? Hoje podes visitar as ruínas e ver como era a vida há 2000 anos!"
+    },
+    {
+      "id": "it_004",
+      "pergunta": "Qual é o nome do monumento oval onde lutavam os gladiadores em Roma?",
+      "opcoes": ["Panteão", "Coliseu", "Vaticano", "Fontana di Trevi"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Era um anfiteatro enorme onde se faziam espetáculos.",
+        "Começa pela letra C e tem forma oval."
+      ],
+      "curiosidade": "Sabias que o Coliseu de Roma tinha lugar para 50 000 pessoas sentadas? É como um estádio moderno de futebol, mas construído há quase 2000 anos!"
+    },
+    {
+      "id": "it_005",
+      "pergunta": "Qual destas coisas foi inventada em Itália?",
+      "opcoes": ["Pizza", "Gelado", "Pasta", "Todas estas!"],
+      "resposta_correta": 3,
+      "dicas": [
+        "Pensa nas tuas comidas italianas favoritas...",
+        "A resposta inclui mais do que uma opção!"
+      ],
+      "curiosidade": "Sabias que a Itália deu ao mundo a pizza, a pasta E o gelado? O mundo agradece muito à Itália por isso!"
+    },
+    {
+      "id": "it_006",
+      "pergunta": "Quantos países pequenos existem dentro do território de Itália?",
+      "opcoes": ["Nenhum", "1", "2", "3"],
+      "resposta_correta": 2,
+      "dicas": [
+        "Um deles é onde vive o Papa.",
+        "São dois países muito pequeninos: um começa por V e outro por S."
+      ],
+      "curiosidade": "Sabias que o Vaticano, com apenas 0,44 km², é o menor país do mundo e fica completamente dentro de Roma? O outro país pequeno dentro de Itália chama-se São Marino!"
+    }
+  ]
+}

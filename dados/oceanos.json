@@ -1,0 +1,71 @@
+{
+  "id": "oceanos",
+  "perguntas": [
+    {
+      "id": "oc_001",
+      "pergunta": "Quantos oceanos existem no mundo?",
+      "opcoes": ["3", "4", "5", "6"],
+      "resposta_correta": 2,
+      "dicas": [
+        "Conta: Pacífico, Atlântico, Índico... há mais dois!",
+        "É mais de 4 mas menos de 6."
+      ],
+      "curiosidade": "Sabias que os 5 oceanos são: Pacífico, Atlântico, Índico, Árctico e Antártico? O Pacífico é tão enorme que todos os continentes caberiam dentro dele!"
+    },
+    {
+      "id": "oc_002",
+      "pergunta": "Qual é o maior oceano do mundo?",
+      "opcoes": ["Atlântico", "Índico", "Pacífico", "Árctico"],
+      "resposta_correta": 2,
+      "dicas": [
+        "Fica entre a Ásia/Austrália e as Américas.",
+        "Começa pela letra P e o nome significa 'pacífico, calmo'."
+      ],
+      "curiosidade": "Sabias que o Oceano Pacífico ocupa mais de metade de toda a água do planeta? É tão grande que a viagem de barco de um lado ao outro demora semanas!"
+    },
+    {
+      "id": "oc_003",
+      "pergunta": "Qual é o maior animal que já existiu na Terra?",
+      "opcoes": ["Tubarão-baleia", "Baleia-azul", "Dinossauro", "Elefante-africano"],
+      "resposta_correta": 1,
+      "dicas": [
+        "É um mamífero que vive no oceano.",
+        "O seu nome tem a cor do mar."
+      ],
+      "curiosidade": "Sabias que a baleia-azul pode ter 30 metros de comprimento e pesar 180 toneladas? O seu coração é do tamanho de um carro pequeno!"
+    },
+    {
+      "id": "oc_004",
+      "pergunta": "O que é uma 'ilha de lixo' no oceano?",
+      "opcoes": ["Uma ilha com praia suja", "Uma grande mancha de plástico no mar", "Um barco cheio de lixo", "Uma ilha deserta"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Não é uma ilha de verdade — não tens chão sólido.",
+        "É feita do lixo de plástico que as pessoas deitam para o mar."
+      ],
+      "curiosidade": "Sabias que existe uma mancha de plástico no Oceano Pacífico com o tamanho de três Franças juntas? Chama-se a 'Grande Mancha de Lixo do Pacífico'!"
+    },
+    {
+      "id": "oc_005",
+      "pergunta": "Qual oceano separa Portugal do Brasil?",
+      "opcoes": ["Pacífico", "Atlântico", "Índico", "Mediterrâneo"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Os navegadores portugueses cruzaram este oceano para chegar ao Brasil.",
+        "Começa pela letra A."
+      ],
+      "curiosidade": "Sabias que o Oceano Atlântico foi o primeiro a ser atravessado de avião? Em 1927, Charles Lindbergh voou de Nova Iorque a Paris sem parar, em 33 horas!"
+    },
+    {
+      "id": "oc_006",
+      "pergunta": "Quanto da superfície da Terra é coberto por oceanos?",
+      "opcoes": ["Cerca de 30%", "Cerca de 50%", "Cerca de 71%", "Cerca de 90%"],
+      "resposta_correta": 2,
+      "dicas": [
+        "É mais de metade — muito mais!",
+        "É um número entre 70% e 75%."
+      ],
+      "curiosidade": "Sabias que os oceanos cobrem 71% da Terra, mas os humanos já exploraram menos de 20% do fundo do mar? O oceano profundo é mais misterioso do que a superfície da Lua!"
+    }
+  ]
+}
