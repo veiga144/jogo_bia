@@ -22,6 +22,13 @@ function mostrarEcra(id) {
   document.querySelectorAll('.ecra').forEach(e => e.classList.remove('ativo'));
   const ecra = document.getElementById(id);
   if (ecra) ecra.classList.add('ativo');
+
+  // mostrar/esconder pinos e mapa consoante o ecrã
+  const noMapa = (id === 'ecra-mapa');
+  const pinosEl = document.getElementById('pinos-container');
+  const mapaEl  = document.querySelector('.mapa-container');
+  if (pinosEl) pinosEl.style.display = noMapa ? 'block' : 'none';
+  if (mapaEl)  mapaEl.style.display  = noMapa ? 'block' : 'none';
 }
 
 // =====================================================================
