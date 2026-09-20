@@ -9,6 +9,7 @@ function iniciarMiniJogo(tipo) {
   if (tipo === 'pizza') miniJogoPizza();
   else if (tipo === 'lixo') miniJogoOceano();
   else if (tipo === 'piramide') miniJogoPiramide();
+  else if (tipo === 'sushi') miniJogoSushi();
 }
 
 // =====================================================================
@@ -298,6 +299,147 @@ function miniJogoPiramide() {
   });
 
   document.getElementById('minijogo-estado').textContent = 'Começa pelo bloco MAIOR!';
+}
+
+// =====================================================================
+// MINI-JOGO 4: SUSHI (Japão)
+// Tapete rolante de restaurante japonês: toca só nos pratos de comida
+// japonesa e apanha 8! Sem tempo limite e sem penalização por errar.
+// =====================================================================
+function miniJogoSushi() {
+  document.getElementById('minijogo-titulo').textContent = '🍣 Apanhar o Sushi!';
+  document.getElementById('minijogo-instrucao').textContent =
+    'Toca só nos pratos de comida do Japão! Apanha 8!';
+
+  const TOTAL = 8;
+  const PRATOS_JAPONESES = [
+    { emoji: '🍣', nome: 'Sushi' },
+    { emoji: '🍙', nome: 'Onigiri (bolinho de arroz)' },
+    { emoji: '🍜', nome: 'Ramen (sopa de massa)' },
+    { emoji: '🍱', nome: 'Bento (marmita japonesa)' },
+    { emoji: '🍡', nome: 'Dango (bolinhos doces)' },
+    { emoji: '🍤', nome: 'Tempura' },
+  ];
+  const PRATOS_OUTROS = ['🍕', '🍔', '🌭', '🍟', '🌮'];
+
+  const area = document.getElementById('minijogo-area');
+  area.innerHTML = `
+    <div class="sushi-area" id="sushi-area">
+      <div class="sushi-hud">🍣 <span id="su-apanhados">0</span>/${TOTAL}</div>
+      <div class="sushi-tapete" id="sushi-lane-0"></div>
+      <div class="sushi-tapete" id="sushi-lane-1"></div>
+      <div class="sushi-tabuleiro" id="sushi-tabuleiro"></div>
+    </div>
+  `;
+
+  const areaEl = document.getElementById('sushi-area');
+  const estado = document.getElementById('minijogo-estado');
+  const tabuleiro = document.getElementById('sushi-tabuleiro');
+  for (let i = 0; i < TOTAL; i++) {
+    const slot = document.createElement('div');
+    slot.className = 'sushi-slot';
+    tabuleiro.appendChild(slot);
+  }
+
+  // Cada tapete anda num sentido (dir: 1 = esquerda→direita, -1 = direita→esquerda)
+  const lanes = [
+    { el: document.getElementById('sushi-lane-0'), dir: 1,  segundos: 6.0, proximo: 0 },
+    { el: document.getElementById('sushi-lane-1'), dir: -1, segundos: 5.0, proximo: 700 },
+  ];
+
+  const PRATO = 76; // largura do prato em px
+  let pratos = [];
+  let apanhados = 0;
+  let ativo = true;
+  let ultimo = performance.now();
+  let relogio = 0;
+
+  function criarPrato(lane) {
+    const japones = Math.random() < 0.65;
+    const info = japones
+      ? PRATOS_JAPONESES[Math.floor(Math.random() * PRATOS_JAPONESES.length)]
+      : { emoji: PRATOS_OUTROS[Math.floor(Math.random() * PRATOS_OUTROS.length)], nome: null };
+
+    const el = document.createElement('div');
+    el.className = 'sushi-prato';
+    // O emoji vai num elemento interior: as animações (abanar/desaparecer) ficam
+    // aí e não interferem com o translateX que move o prato pelo tapete.
+    const dentro = document.createElement('span');
+    dentro.className = 'sushi-prato-in';
+    dentro.textContent = info.emoji;
+    el.appendChild(dentro);
+
+    const largura = lane.el.clientWidth || area.clientWidth || 360;
+    const velocidade = largura / lane.segundos; // px por segundo
+    const prato = {
+      el, japones, info, lane,
+      x: lane.dir === 1 ? -PRATO : largura,
+      v: velocidade * lane.dir,
+      largura,
+      apanhado: false,
+    };
+    el.style.transform = `translateX(${prato.x}px)`;
+
+    el.addEventListener('pointerdown', (ev) => {
+      ev.preventDefault();
+      if (!ativo || prato.apanhado) return;
+
+      if (prato.japones) {
+        prato.apanhado = true;
+        apanhados++;
+        document.getElementById('su-apanhados').textContent = apanhados;
+        tabuleiro.children[apanhados - 1].textContent = info.emoji;
+        el.classList.add('apanhado');
+        setTimeout(() => el.remove(), 250);
+        estado.textContent = apanhados >= TOTAL
+          ? '🎉 Itadakimasu! (Bom apetite em japonês!)'
+          : `${info.nome}! Muito bem! ${apanhados}/${TOTAL}`;
+
+        if (apanhados >= TOTAL) {
+          ativo = false;
+          setTimeout(() => concluirMiniJogo(), 1400);
+        }
+      } else {
+        el.classList.remove('errado');
+        void el.offsetWidth; // reinicia a animação
+        el.classList.add('errado');
+        estado.textContent = 'Isso não é comida japonesa! Tenta outro prato 😄';
+      }
+    });
+
+    lane.el.appendChild(el);
+    pratos.push(prato);
+  }
+
+  function ciclo(agora) {
+    // Parar se o mini-jogo terminou ou se o ecrã já foi trocado
+    if (!ativo || !document.body.contains(areaEl)) return;
+
+    const dt = Math.min(agora - ultimo, 50); // evita saltos se o separador ficar em pausa
+    ultimo = agora;
+    relogio += dt;
+
+    lanes.forEach(lane => {
+      if (relogio >= lane.proximo) {
+        criarPrato(lane);
+        lane.proximo = relogio + 1300 + Math.random() * 700;
+      }
+    });
+
+    pratos = pratos.filter(pr => {
+      if (pr.apanhado) return false;
+      pr.x += pr.v * (dt / 1000);
+      const fora = pr.lane.dir === 1 ? pr.x > pr.largura : pr.x < -PRATO;
+      if (fora) { pr.el.remove(); return false; }
+      pr.el.style.transform = `translateX(${pr.x}px)`;
+      return true;
+    });
+
+    requestAnimationFrame(ciclo);
+  }
+
+  estado.textContent = `0/${TOTAL} pratos apanhados`;
+  requestAnimationFrame(ciclo);
 }
 
 // =====================================================================

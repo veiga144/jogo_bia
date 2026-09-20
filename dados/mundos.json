@@ -34,5 +34,17 @@
     "pin_y": 37.5,
     "minijogo": "piramide",
     "desbloqueado": true
+  },
+  {
+    "id": "japao",
+    "nome": "Japão",
+    "emoji": "🗻",
+    "descricao": "Viaja até ao País do Sol Nascente!",
+    "cor": "#BC002D",
+    "cor2": "#FFFFFF",
+    "pin_x": 85.5,
+    "pin_y": 36.0,
+    "minijogo": "sushi",
+    "desbloqueado": true
   }
 ]

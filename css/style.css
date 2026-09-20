@@ -743,6 +743,87 @@ body:not(:has(#ecra-mapa.ativo)) #pinos-container {
   100% { transform: translateY(-100vh); opacity: 0; }
 }
 
+/* --- Mini-jogo Sushi --- */
+.sushi-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #7b1e2b 0%, #4a0f1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 44px 0 16px;
+  overflow: hidden;
+}
+.sushi-hud {
+  position: absolute;
+  top: 10px; left: 0; right: 0;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+.sushi-tapete {
+  position: relative;
+  flex: none;
+  width: 100%;
+  height: 100px;
+  background: repeating-linear-gradient(90deg, #3b3b46 0 22px, #34343e 22px 44px);
+  border-top: 6px solid #c9a66b;
+  border-bottom: 6px solid #c9a66b;
+  overflow: hidden;
+}
+.sushi-prato {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -38px;
+  width: 76px;
+  height: 76px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+.sushi-prato-in {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff8ee;
+  border: 4px solid #e63946;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.3rem;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.sushi-prato.errado .sushi-prato-in { animation: shake 0.4s ease; background: #ffd6d6; }
+.sushi-prato.apanhado .sushi-prato-in { transform: scale(0); opacity: 0; }
+.sushi-tabuleiro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  max-width: 100%;
+  background: rgba(255,255,255,0.12);
+  border-radius: var(--raio);
+}
+.sushi-slot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
 /* --- Mini-jogo Pirâmide --- */
 .piramide-area {
   display: flex;

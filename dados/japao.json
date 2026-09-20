@@ -1,0 +1,71 @@
+{
+  "id": "japao",
+  "perguntas": [
+    {
+      "id": "jp_001",
+      "pergunta": "Qual é a capital do Japão?",
+      "opcoes": ["Tóquio", "Quioto", "Osaca", "Pequim"],
+      "resposta_correta": 0,
+      "dicas": [
+        "É uma cidade enorme, com arranha-céus, luzes de néon e muita, muita gente.",
+        "Começa pela letra T."
+      ],
+      "curiosidade": "Sabias que na região de Tóquio vivem mais de 30 milhões de pessoas? É cerca de três vezes mais gente do que em todo o Portugal!"
+    },
+    {
+      "id": "jp_002",
+      "pergunta": "A bandeira do Japão tem um grande círculo vermelho. O que representa?",
+      "opcoes": ["A Lua", "O Sol", "Uma cereja", "Um planeta"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Vem todos os dias de manhã e dá luz e calor à Terra.",
+        "Por isso o Japão é chamado o 'País do ...' Nascente."
+      ],
+      "curiosidade": "Sabias que o nome do Japão, na língua japonesa, quer dizer 'origem do Sol'? Como o Japão fica muito a leste da Ásia, chamam-lhe o País do Sol Nascente!"
+    },
+    {
+      "id": "jp_003",
+      "pergunta": "Como se chama a montanha mais alta do Japão, um vulcão com o topo coberto de neve?",
+      "opcoes": ["Monte Everest", "Vesúvio", "Monte Fuji", "Monte Branco"],
+      "resposta_correta": 2,
+      "dicas": [
+        "É um vulcão muito bonito, com uma forma quase perfeita de triângulo.",
+        "Começa pela letra F."
+      ],
+      "curiosidade": "Sabias que o Monte Fuji tem 3776 metros de altura e não entra em erupção há mais de 300 anos? Todos os anos, muita gente sobe até ao topo para ver o nascer do Sol!"
+    },
+    {
+      "id": "jp_004",
+      "pergunta": "Qual é o alimento que é a base do sushi e que se cozinha antes de o enrolar?",
+      "opcoes": ["Batata", "Massa", "Pão", "Arroz"],
+      "resposta_correta": 3,
+      "dicas": [
+        "É pequenino, branco e come-se muito na Ásia.",
+        "Começa pela letra A."
+      ],
+      "curiosidade": "Sabias que a palavra 'sushi' quer dizer arroz temperado com vinagre, e não peixe cru? Por isso também existe sushi só com legumes!"
+    },
+    {
+      "id": "jp_005",
+      "pergunta": "Como se chama a arte japonesa de dobrar papel para fazer figuras?",
+      "opcoes": ["Bonsai", "Origami", "Manga", "Karaté"],
+      "resposta_correta": 1,
+      "dicas": [
+        "Só precisas de uma folha de papel e das tuas mãos.",
+        "Começa pela letra O."
+      ],
+      "curiosidade": "Sabias que 'ori' quer dizer dobrar e 'kami' quer dizer papel? O origami mais famoso é o grou, uma ave de papel. Diz a lenda que quem dobrar mil grous vê um desejo realizado!"
+    },
+    {
+      "id": "jp_006",
+      "pergunta": "Como se chama o comboio japonês muito rápido, conhecido como 'comboio-bala'?",
+      "opcoes": ["Shinkansen", "Tuk-tuk", "Teleférico", "Gôndola"],
+      "resposta_correta": 0,
+      "dicas": [
+        "É um comboio tão veloz que parece uma bala a passar.",
+        "O nome começa por Shin... e tem muitas letras!"
+      ],
+      "curiosidade": "Sabias que o primeiro Shinkansen começou a andar em 1964 e hoje pode passar dos 300 km por hora? Os comboios japoneses são famosos por chegarem sempre à hora certa!"
+    }
+  ]
+}
